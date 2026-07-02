@@ -1,5 +1,5 @@
+#include <iostream> // esse include deve vir antes, do contrario da erro
 #include "vetor2d.h"
-#include <iostream>
 
 void Vetor2D::setX(float x)
 {
@@ -17,6 +17,12 @@ void Vetor2D::set(float x, float y)
     this->y = y;
 }
 
+void Vetor2D::zero()
+{
+    x = 0;
+    y = 0;
+}
+
 float Vetor2D::getX()
 {
     return x;
@@ -25,17 +31,6 @@ float Vetor2D::getX()
 float Vetor2D::getY()
 {
     return y;
-}
-
-void Vetor2D::zero()
-{
-    x = 0;
-    y = 0;
-}
-
-void Vetor2D::print()
-{
-    std::cout << "(" << x << ", " << y << ")" << std::endl;
 }
 
 Vetor2D::Vetor2D()
@@ -105,4 +100,16 @@ void Vetor2D::operator*=(float a) {
 void Vetor2D::operator/=(float a) {
     x /= a;
     y /= a;
+}
+
+std::istream& operator>>(std::istream& is, Vetor2D& v)
+{
+    is >> v.x >> v.y;
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Vetor2D& v)
+{
+  os << "(" << v.x << ", " << v.y << ")";
+  return os;
 }
